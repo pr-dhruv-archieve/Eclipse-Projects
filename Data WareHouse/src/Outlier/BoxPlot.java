@@ -66,7 +66,7 @@ public class BoxPlot {
 		//Finding Min
 		min = temp.get(0);
 		
-		//Finiding max
+		//Finding max
 		max = temp.get(temp.size() - 1);
 
 		// Calculating the Q1, Q2, Q3, IQR, MEAN
