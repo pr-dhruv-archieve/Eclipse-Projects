@@ -8,6 +8,9 @@ public class SubString {
 		System.out.println(s);
 		System.out.println(s.substring(2)+s.substring(0,2));
 		System.out.println(s.substring(s.length() - 2)+s.substring(0,s.length() - 2));
+		s = "d";
+		String temp = s.substring(0,1);
+		System.out.println(s.indexOf(temp));
 		
 	}
 

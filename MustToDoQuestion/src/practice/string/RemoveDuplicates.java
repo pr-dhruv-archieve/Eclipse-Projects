@@ -1,4 +1,4 @@
-package practice.stack;
+package practice.string;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -16,9 +16,11 @@ public class RemoveDuplicates {
 		
 		sc.useDelimiter("\\n");
 		String[] s = new String[n];
-		for (int i = 0; i < n && sc.hasNext(); i++)
-			s[i] = sc.nextLine();
-		
+		try{
+			for (int i = 0; i < n && sc.hasNext(); i++)
+				s[i] = br.readLine();
+		}
+		catch(IOException e){}
 		for (int i = 0; i < n; i++) {
 			String temp = "";
 			for (int j = 0 ; j < s[i].length(); j++) {

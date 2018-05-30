@@ -1,4 +1,4 @@
-package practice.stack;
+package practice.string;
 
 import java.util.Scanner;
 

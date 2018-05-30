@@ -1,8 +1,8 @@
-package practice.stack;
+package practice.string;
 
 import java.util.Scanner;
 
-public class ParenthesisChecker {
+public class ParenthesisChecker1 {
 
 	@SuppressWarnings("resource")
 	public static void main(String[] args) {
@@ -12,7 +12,7 @@ public class ParenthesisChecker {
 		int n = sc.nextInt();
 		
 		String[] data = new String[n];
-		char[] stack = new char[100];
+		char[] stack = new char[20 ];
 		
 		
 		for(int i = 0; i < n; i++)
@@ -35,7 +35,7 @@ public class ParenthesisChecker {
 		        else if(data[i].charAt(j) == ']' && stack[top] == '[' )
 		            top--;
 		        else
-		            flag = 1;
+		            break;
 			}
 			
 			if(flag == 0)
