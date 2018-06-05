@@ -1,6 +1,6 @@
 package practice.bst;
 
-import datastructure.bst.*;
+import datastructure.bt.*;
 
 public class CheckBST {
 

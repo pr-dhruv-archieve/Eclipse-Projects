@@ -1,4 +1,4 @@
-package datastructure.bst;
+package datastructure.bt;
 
 import java.util.Random;
 
@@ -52,7 +52,7 @@ public class BST {
 		}
 	}
 	
-	public static void auxPrint(Node root, int space) {
+	private static void auxPrint(Node root, int space) {
 		if (root == null)	return;
 		
 		for (int i=1;i<space;++i)

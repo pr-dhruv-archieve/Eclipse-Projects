@@ -1,4 +1,4 @@
-package datastructure.bst;
+package datastructure.bt;
 
 public class Node {
 	public int data;

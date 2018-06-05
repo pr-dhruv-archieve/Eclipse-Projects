@@ -2,8 +2,8 @@ package practice.bst;
 
 import java.util.Scanner;
 
-import datastructure.bst.BST;
-import datastructure.bst.Node;
+import datastructure.bt.BST;
+import datastructure.bt.Node;
 
 public class LeftView {
 
