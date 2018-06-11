@@ -1,35 +1,37 @@
 package practice.string;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.Scanner;
 
 public class RemoveDuplicates {
 
+	public static String uniq(String data) {
+		String str = "";
+
+		for (int i = 0; i < data.length(); i++) {
+			char ch = data.charAt(i);
+			if (str.indexOf(ch) == -1)
+				str += ch+"";
+		}
+
+		return str;
+	}
+
 	@SuppressWarnings("resource")
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		Scanner sc = new Scanner(System.in);
+
 		int n = sc.nextInt();
-		
-		sc.useDelimiter("\\n");
-		String[] s = new String[n];
-		try{
-			for (int i = 0; i < n && sc.hasNext(); i++)
-				s[i] = br.readLine();
-		}
-		catch(IOException e){}
-		for (int i = 0; i < n; i++) {
-			String temp = "";
-			for (int j = 0 ; j < s[i].length(); j++) {
-				if(temp.indexOf(s[i].charAt(j)) < 0)
-					temp += s[i].charAt(j) + "";
-			}
-			System.out.println(temp);
-		}
-		
+
+		String[] data = new String[n];
+
+		sc.nextLine();
+		for (int i = 0; i < n; i++)
+			data[i] = sc.nextLine();
+
+		for (int i = 0; i < n; i++)
+			System.out.println(uniq(data[i]));
+
 	}
 
 }
