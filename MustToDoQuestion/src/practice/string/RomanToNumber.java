@@ -6,30 +6,59 @@ public class RomanToNumber {
 
 	public static int romanToNumber(String data) {
 		int number = 0;
-
-		for (int i = 0; i < data.length(); i++) {
+		
+		int pos;
+		
+		if ((pos = data.indexOf("IV")) > 0) 
+			number += 4;
+		else if ((pos = data.indexOf("IX")) > 0)
+			number += 9;
+		else
+			pos = data.length();
+		
+		for (int i = 0; i < pos; i++) {
 			if(data.charAt(i) == 'M')
 				number += 1000;
 			else if(data.charAt(i) == 'D')
 				number += 500;
-			else if(data.charAt(i) == 'C')
+			else if(data.charAt(i) == 'C') {
+				if (i+1 < pos) {
+					if (data.charAt(i + 1) == 'M'){
+						number += 900;
+						i++;
+						continue;
+					}
+					else if (data.charAt(i + 1) == 'D') {
+						number += 400;
+						i++;
+						continue;
+					}
+				}
 				number += 100;
+			}
+				
 			else if(data.charAt(i) == 'L')
 				number += 50;
-			else if(data.charAt(i) == 'X')
+			else if(data.charAt(i) == 'X') {
+				if (i+1 < pos) {
+					if (data.charAt(i + 1) == 'L'){
+						number += 40;
+						i++;
+						continue;
+					}
+					else if (data.charAt(i + 1) == 'C') {
+						number += 90;
+						i++;
+						continue;
+					}
+				}
 				number += 10;
+			}
 			else if(data.charAt(i) == 'V')
 				number += 5;
-			else if(data.charAt(i) == 'I' && data.charAt(i+1) == 'V') {
-				number += 4;
-				break;
-			}
-			else if(data.charAt(i) == 'I' && data.charAt(i+1) == 'X') {
-				number += 9;
-				break;
-			}
-			else if(data.charAt(i) == 'I')
+			else if(data.charAt(i) == 'I') {
 				number += 1;
+			}
 		}
 		return number;
 	}

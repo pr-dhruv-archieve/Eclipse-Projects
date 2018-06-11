@@ -367,5 +367,19 @@ public class BT {
 		return ((root1 != null && root2 != null) && isStructuredIdentical(root1.left, root2.left) && isStructuredIdentical(root1.right, root2.right));
 	}
 	
+	public static int treeDiameter(Node root) {
+		if (root == null)
+			return 0;
+		
+		int leftheight = height(root.left);
+		int rightheight = height(root.right);
+		int height = 1 + leftheight + rightheight;
+		
+		int leftdiameter = treeDiameter(root.left);
+		int rightdiameter = treeDiameter(root.right);
+		
+		return Math.max (height, Math.max (leftdiameter, rightdiameter));
+		
+	}
 	
 }

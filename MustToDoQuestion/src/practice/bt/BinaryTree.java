@@ -59,11 +59,13 @@ public class BinaryTree {
 		System.out.println("Half Node Count : "+BT.halfNodeCount(root));
 		
 		System.out.println("Leaf Node Count : "+BT.leafNodeCount(root));
-		*/
+		
 		Node root1 = BT.createBT(null, nodes);
 		System.out.println("Tree 2 :");
 		BT.graphicalView(root1);
 		System.out.println("Structured Identical : "+BT.isStructuredIdentical(root, root1));
+		
+		System.out.println("Tree Diameter : "+BT.treeDiameter(root));	
+		*/
 	}
-
 }
