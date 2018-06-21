@@ -75,9 +75,15 @@ public class BinaryTree {
 		
 		System.out.println("All path from root to leaf node : ");
 		BT.allRootToLeafPath(root);
-		*/
+		
 		int sum = sc.nextInt();
 		System.out.println("Path for given sum : "+BT.pathForGivenSum(root, sum));
+		
+		System.out.println("Sum of Tree : "+BT.sumOfTree(root));
+		*/
+		
+		Node mirror = BT.mirrorTree(root);
+		BT.graphicalView(mirror);
 		
 		
 	}

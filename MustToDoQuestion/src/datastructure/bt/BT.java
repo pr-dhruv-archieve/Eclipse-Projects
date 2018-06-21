@@ -442,9 +442,39 @@ public class BT {
 		auxallRootToLeafPath(root, "");
 	}
 
-	public static String pathForGivenSum(Node root, int sum) {
-		
-		return "";
+	public static boolean pathForGivenSum(Node root, int sum) {
+		if (root == null)
+			return sum == 0;
+		else {
+			boolean ans = false;
+			int remaining = sum - root.data;
+			
+			if (remaining == 0 & root.left == null && root.right == null)
+				return true;
+			if (root.left != null)
+				ans = ans || pathForGivenSum(root.left, remaining);
+			if (root.right != null)
+				ans = ans || pathForGivenSum(root.right, remaining);
+			return ans;
+		}
+	}
+
+	public static int sumOfTree(Node root) {
+		if (root == null)
+			return 0;
+		return root.data + sumOfTree(root.left) + sumOfTree(root.right);
+	}
+	
+	public static Node mirrorTree(Node root) {
+		if (root != null) {
+			mirrorTree(root.left);
+			mirrorTree(root.right);
+			
+			Node temp = root.left;
+			root.left = root.right;
+			root.right = temp;
+		}
+		return root;
 	}
 	
 }
