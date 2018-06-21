@@ -7,6 +7,8 @@ import java.util.Stack;
 
 public class BT {
 
+	static int max;
+
 	public static Node insert(Node root, int data) {
 		if (root == null) {
 			root = new Node(data);
@@ -110,20 +112,22 @@ public class BT {
 		}
 	}
 
-	private static void auxPrint(Node root, int space) {
-		if (root == null)
-			return;
+	private static void auxGraphicalPrint(Node root, int space) {
 
 		for (int i = 1; i < space; ++i)
 			System.out.print(" ");
+		if (root == null) {
+			System.out.println("-");
+			return;
+		}
 		System.out.println(root.data);
 
-		auxPrint(root.left, space + 4);
-		auxPrint(root.right, space + 4);
+		auxGraphicalPrint(root.left, space + 4);
+		auxGraphicalPrint(root.right, space + 4);
 	}
 
 	public static void graphicalView(Node root) {
-		auxPrint(root, 0);
+		auxGraphicalPrint(root, 0);
 	}
 
 	public static int height(Node root) {
@@ -174,7 +178,7 @@ public class BT {
 		}
 		return max;
 	}
-	
+
 	public static boolean findRecursion(Node root, int data) {
 		if (root == null)
 			return false;
@@ -190,7 +194,7 @@ public class BT {
 		}
 		return false;
 	}
-	
+
 	public static boolean findLevelOrder(Node root, int data) {
 		LinkedList<Node> q = new LinkedList<Node>();
 		q.add(root);
@@ -204,9 +208,9 @@ public class BT {
 				q.add(root.right);
 		}
 		return false;
-		
+
 	}
-	
+
 	public static int sizeRecursion(Node root) {
 		if (root == null)
 			return 0;
@@ -219,8 +223,8 @@ public class BT {
 		LinkedList<Node> q = new LinkedList<Node>();
 		int size = 0;
 		q.add(cur);
-		
-		while(!q.isEmpty()) {
+
+		while (!q.isEmpty()) {
 			cur = q.removeFirst();
 			if (cur != null)
 				size++;
@@ -231,11 +235,11 @@ public class BT {
 		}
 		return size;
 	}
-	
+
 	public static void levelOrderInReverse(Node root) {
 		LinkedList<Node> q = new LinkedList<Node>();
 		Stack<Node> s = new Stack<Node>();
-		
+
 		Node cur = root;
 		q.add(cur);
 		while (!q.isEmpty()) {
@@ -246,12 +250,12 @@ public class BT {
 			if (cur.left != null)
 				q.add(cur.left);
 		}
-		
-		while(!s.isEmpty())
-			System.out.print(s.pop().data+" ");
+
+		while (!s.isEmpty())
+			System.out.print(s.pop().data + " ");
 		System.out.println();
 	}
-	
+
 	public static int findHeightIterative(Node root) {
 		int height = -1;
 		if (root == null)
@@ -260,10 +264,10 @@ public class BT {
 			Node cur = root;
 			LinkedList<Node> q = new LinkedList<Node>();
 			height = 1;
-			
+
 			q.add(cur);
 			q.add(null);
-			
+
 			while (!q.isEmpty()) {
 				cur = q.removeFirst();
 				if (cur == null) {
@@ -271,7 +275,7 @@ public class BT {
 						q.add(null);
 					height++;
 				}
-				
+
 				if (cur.left != null)
 					q.add(cur.left);
 				if (cur.right != null)
@@ -280,15 +284,15 @@ public class BT {
 			return height;
 		}
 	}
-	
+
 	public static int deepestNode(Node root) {
 		if (root == null)
 			return -1;
 		LinkedList<Node> q = new LinkedList<Node>();
 		Node cur = root;
-		
+
 		q.add(root);
-		
+
 		while (!q.isEmpty()) {
 			cur = q.removeFirst();
 			if (cur.left != null)
@@ -298,7 +302,7 @@ public class BT {
 		}
 		return cur.data;
 	}
-	
+
 	public static int fullNodeCount(Node root) {
 		if (root == null)
 			return 0;
@@ -306,7 +310,7 @@ public class BT {
 		Node cur = root;
 		int count = 0;
 		q.add(root);
-		
+
 		while (!q.isEmpty()) {
 			cur = q.removeFirst();
 			if (cur.left != null && cur.right != null)
@@ -318,7 +322,7 @@ public class BT {
 		}
 		return count;
 	}
-	
+
 	public static int halfNodeCount(Node root) {
 		if (root == null)
 			return 0;
@@ -326,10 +330,10 @@ public class BT {
 		Node cur = root;
 		int count = 0;
 		q.add(root);
-		
+
 		while (!q.isEmpty()) {
 			cur = q.removeFirst();
-			if ((cur.left != null && cur.right == null) || (cur.left == null && cur.right != null)) 
+			if ((cur.left != null && cur.right == null) || (cur.left == null && cur.right != null))
 				count++;
 			if (cur.left != null)
 				q.add(cur.left);
@@ -338,7 +342,7 @@ public class BT {
 		}
 		return count;
 	}
-	
+
 	public static int leafNodeCount(Node root) {
 		if (root == null)
 			return 0;
@@ -346,10 +350,10 @@ public class BT {
 		Node cur = root;
 		int count = 0;
 		q.add(root);
-		
+
 		while (!q.isEmpty()) {
 			cur = q.removeFirst();
-			if (cur.right == null && cur.left == null) 
+			if (cur.right == null && cur.left == null)
 				count++;
 			if (cur.left != null)
 				q.add(cur.left);
@@ -364,22 +368,83 @@ public class BT {
 			return true;
 		if (root1 == null || root2 == null)
 			return false;
-		return ((root1 != null && root2 != null) && isStructuredIdentical(root1.left, root2.left) && isStructuredIdentical(root1.right, root2.right));
+		return ((root1 != null && root2 != null) && isStructuredIdentical(root1.left, root2.left)
+				&& isStructuredIdentical(root1.right, root2.right));
 	}
-	
+
 	public static int treeDiameter(Node root) {
 		if (root == null)
 			return 0;
-		
+
 		int leftheight = height(root.left);
 		int rightheight = height(root.right);
 		int height = 1 + leftheight + rightheight;
-		
+
 		int leftdiameter = treeDiameter(root.left);
 		int rightdiameter = treeDiameter(root.right);
+
+		return Math.max(height, Math.max(leftdiameter, rightdiameter));
+
+	}
+
+	private static void auxLeftView(Node root, int level) {
+		if (root == null)
+			return;
+
+		if (max < level) {
+			System.out.print(root.data + " ");
+			max = level;
+		}
+
+		auxLeftView(root.left, level + 1);
+		auxLeftView(root.right, level + 1);
+
+	}
+
+	public static void leftView(Node root) {
+		auxLeftView(root, 1);
+		System.out.println();
+	}
+
+	private static void auxRightView(Node root, int level) {
+		if (root == null)
+			return;
+
+		if (max < level) {
+			System.out.print(root.data + " ");
+			max = level;
+		}
+
+		auxRightView(root.right, level + 1);
+		auxRightView(root.left, level + 1);
+
+	}
+
+	public static void rightView(Node root) {
+		auxRightView(root, 1);
+	}
+
+	private static void auxallRootToLeafPath(Node root, String path) {
+		if (root == null)
+			return ;
 		
-		return Math.max (height, Math.max (leftdiameter, rightdiameter));
+		if (root.left == null && root.right == null) {
+			System.out.println(path + root.data);
+			return;
+		}
+		else {
+			auxallRootToLeafPath(root.left, path + root.data + "->");
+			auxallRootToLeafPath(root.right, path + root.data + "->");
+		}
+	}
+
+	public static void allRootToLeafPath(Node root) {
+		auxallRootToLeafPath(root, "");
+	}
+
+	public static String pathForGivenSum(Node root, int sum) {
 		
+		return "";
 	}
 	
 }

@@ -52,19 +52,23 @@ public class BST {
 		}
 	}
 	
-	private static void auxPrint(Node root, int space) {
-		if (root == null)	return;
-		
-		for (int i=1;i<space;++i)
+	private static void auxGraphicalPrint(Node root, int space) {
+
+		for (int i = 1; i < space; ++i)
 			System.out.print(" ");
+		if (root == null) {
+			System.out.println("-");
+			return;
+		}
 		System.out.println(root.data);
 		
-		auxPrint(root.left, space+4);
-		auxPrint(root.right, space+4);
+
+		auxGraphicalPrint(root.left, space + 4);
+		auxGraphicalPrint(root.right, space + 4);
 	}
-	
+
 	public static void graphicalView(Node root) {
-		auxPrint(root, 0);
+		auxGraphicalPrint(root, 0);
 	}
 
 }

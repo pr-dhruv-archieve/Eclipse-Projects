@@ -66,6 +66,19 @@ public class BinaryTree {
 		System.out.println("Structured Identical : "+BT.isStructuredIdentical(root, root1));
 		
 		System.out.println("Tree Diameter : "+BT.treeDiameter(root));	
+		
+		System.out.println("Left View : ");
+		BT.leftView(root);
+		
+		System.out.println("Right View : ");
+		BT.rightView(root);
+		
+		System.out.println("All path from root to leaf node : ");
+		BT.allRootToLeafPath(root);
 		*/
+		int sum = sc.nextInt();
+		System.out.println("Path for given sum : "+BT.pathForGivenSum(root, sum));
+		
+		
 	}
 }
