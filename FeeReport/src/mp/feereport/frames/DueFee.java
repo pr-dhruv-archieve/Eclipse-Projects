@@ -10,11 +10,11 @@ import javax.swing.JTable;
 import mp.feereport.dao.StudentDao;
 import mp.feereport.entity.Student;
 
-public class ViewStudent extends JFrame {
-	static ViewStudent frame;
-	public ViewStudent() {
+public class DueFee extends JFrame {
+	static DueFee frame;
+	public DueFee() {
 		//Code to view data in JTable
-		List<Student> list=StudentDao.view();
+		List<Student> list=StudentDao.due();
 		int size=list.size();
 		
 		String data[][]=new String[size][12];
@@ -49,7 +49,7 @@ public class ViewStudent extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					frame = new ViewStudent();
+					frame = new DueFee();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
