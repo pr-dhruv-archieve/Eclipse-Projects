@@ -1,3 +1,4 @@
+package mp.feereport.entity;
 
 public class Student {
 	
