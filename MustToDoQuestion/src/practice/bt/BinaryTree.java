@@ -11,7 +11,7 @@ public class BinaryTree {
 		// TODO Auto-generated method stub
 		
 		int nodes = Integer.parseInt(args[0]);
-		Scanner sc = new Scanner(System.in);
+		/*Scanner sc = new Scanner(System.in);
 		
 		Node root = null;
 		root = BT.createBT(root, nodes);
@@ -19,7 +19,7 @@ public class BinaryTree {
 		//Preorder with level
 		System.out.println("Tree 1 : ");
 		BT.graphicalView(root);
-		/*
+		
 		System.out.print("Preorder Recursive :\t");
 		BT.preorderRecursive(root);
 		System.out.print("\nPreoder Iterative :\t");
@@ -80,11 +80,21 @@ public class BinaryTree {
 		System.out.println("Path for given sum : "+BT.pathForGivenSum(root, sum));
 		
 		System.out.println("Sum of Tree : "+BT.sumOfTree(root));
-		*/
 		
 		Node mirror = BT.mirrorTree(root);
 		BT.graphicalView(mirror);
 		
+		System.out.println("Root1 and Root2 are Mirror -> " + BT.areMirror(root, mirror));
+		*/
 		
+		Node root1 = null, root2 = null;
+		
+		root1 = BT.userTree(root1, nodes);
+		root2 = BT.userTree(root2, nodes);
+		
+		System.out.println("Tree 1 : ");
+		BT.graphicalView(root1);
+		System.out.println("Tree 2 : ");
+		BT.graphicalView(root2);
 	}
 }

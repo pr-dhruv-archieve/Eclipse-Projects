@@ -1,14 +1,15 @@
 package datastructure.bt;
 
 import java.util.LinkedList;
-import java.util.Queue;
 import java.util.Random;
+import java.util.Scanner;
 import java.util.Stack;
 
 public class BT {
 
 	static int max;
 
+	
 	public static Node insert(Node root, int data) {
 		if (root == null) {
 			root = new Node(data);
@@ -84,7 +85,7 @@ public class BT {
 			System.out.print(root.data + " ");
 			inorderRecursive(root.right);
 		}
-	}
+}
 
 	public static void inorderIterative(Node root) {
 		Stack<Node> s = new Stack<Node>();
@@ -475,6 +476,81 @@ public class BT {
 			root.right = temp;
 		}
 		return root;
+	}
+
+	public static boolean areMirror(Node root1, Node root2) {
+		
+		if (root1 == null && root2 == null)
+			return true;
+		
+		if (root1 == null || root2 == null)
+			return false;
+		if (root1.data != root2.data)
+			return false;
+		
+		else
+			return areMirror(root1.left, root2.right) && areMirror(root1.right, root2.left);
+		
+	}
+
+	private static Node find(Node root, int data) {
+		if (root == null)
+			return null;
+		else {
+			if (root.data == data)
+				return root;
+			else {
+				if (root.left != null)
+					return find(root.left, data);
+				if (root.right != null)
+					return find(root.right, data);
+			}
+		}
+		return root;
+	}
+	
+	public static Node userTree(Node root, int nodes) {
+
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.print("Root data : ");
+		int data = sc.nextInt();
+		
+		root = new Node(data);
+		
+		for (int i = 2; i <= nodes; i++) {
+			
+			System.out.print("Node data : ");
+			data = sc.nextInt();
+			
+			Node node = new Node(data);
+			
+			System.out.print("Parent data : ");
+			int pdata = sc.nextInt();
+			Node parent = find(root, pdata);
+			
+			if (parent != null) {
+				System.out.print("Left or Right : ");
+				String side = sc.next();
+				
+				if (side.toLowerCase().equals("l") || side.toLowerCase().equals("left"))
+					parent.left = node;
+				
+				else if (side.toLowerCase().equals("r") || side.toLowerCase().equals("right"))
+					parent.right = node;
+				
+				else {
+					System.out.println("Wrong side");
+					i--;
+				}
+			}
+			else {
+				System.out.print("Parent not found.");
+				i--;
+			}
+		}
+		return root;
+			
 	}
 	
 }
