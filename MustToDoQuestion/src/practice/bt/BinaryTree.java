@@ -11,11 +11,11 @@ public class BinaryTree {
 		// TODO Auto-generated method stub
 		
 		int nodes = Integer.parseInt(args[0]);
-		/*Scanner sc = new Scanner(System.in);
+		Scanner sc = new Scanner(System.in);
 		
-		Node root = null;
-		root = BT.createBT(root, nodes);
-		
+		Node root = BT.createBT(null, nodes);
+		BT.graphicalView(root);
+		/*
 		//Preorder with level
 		System.out.println("Tree 1 : ");
 		BT.graphicalView(root);
@@ -33,7 +33,8 @@ public class BinaryTree {
 		
 		System.out.println("\nPostorder Recursive :\t");
 		BT.postordeRecursive(root);
-		//System.out.println("\nPostorder Iterative :\t");
+		System.out.println("\nPostorder Iterative :\t");
+		BT.postOrderIterative(root);
 		
 		System.out.println("\nHeight : "+BT.height(root));
 		System.out.println("Max Element : "+BT.findMax(root));
@@ -85,7 +86,6 @@ public class BinaryTree {
 		BT.graphicalView(mirror);
 		
 		System.out.println("Root1 and Root2 are Mirror -> " + BT.areMirror(root, mirror));
-		*/
 		
 		Node root1 = null, root2 = null;
 		
@@ -96,5 +96,12 @@ public class BinaryTree {
 		BT.graphicalView(root1);
 		System.out.println("Tree 2 : ");
 		BT.graphicalView(root2);
+		
+		System.out.println("Vertical Order : ");
+		BT.printVerticalOrder(root1);
+		*/
+		System.out.println("Top View : ");
+		BT.printBottomView(root);
+		
 	}
 }

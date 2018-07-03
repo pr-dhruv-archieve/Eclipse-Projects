@@ -1,14 +1,18 @@
 package datastructure.bt;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.Map;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.Stack;
+import java.util.TreeMap;
 
 public class BT {
 
 	static int max;
-
+	static int lmax, rmax;
+	static String left, right; 
 	
 	public static Node insert(Node root, int data) {
 		if (root == null) {
@@ -85,7 +89,7 @@ public class BT {
 			System.out.print(root.data + " ");
 			inorderRecursive(root.right);
 		}
-}
+	}
 
 	public static void inorderIterative(Node root) {
 		Stack<Node> s = new Stack<Node>();
@@ -113,6 +117,34 @@ public class BT {
 		}
 	}
 
+	public static void postOrderIterative(Node root) {
+		
+		Node cur = root;
+		Stack<Node> s = new Stack<Node>();
+		
+		while (cur != null || !s.empty()) {
+			if (cur != null) {
+				s.push(cur);
+				cur= cur.left;
+			}
+			else {
+				Node temp = s.peek().right;
+				if (temp == null) {
+					temp = s.pop();
+					System.out.print(temp.data + " ");
+					
+					while (!s.empty() && temp == s.peek().right) {
+						temp = s.pop();
+						System.out.print(temp.data + " ");
+					}
+				}
+				else
+					cur = temp;
+			}
+		}
+		
+	}
+	
 	private static void auxGraphicalPrint(Node root, int space) {
 
 		for (int i = 1; i < space; ++i)
@@ -450,7 +482,7 @@ public class BT {
 			boolean ans = false;
 			int remaining = sum - root.data;
 			
-			if (remaining == 0 & root.left == null && root.right == null)
+			if (remaining == 0 && root.left == null && root.right == null)
 				return true;
 			if (root.left != null)
 				ans = ans || pathForGivenSum(root.left, remaining);
@@ -551,6 +583,66 @@ public class BT {
 		}
 		return root;
 			
+	}
+
+	private static void getVerticalOrder(Node root, int hd, TreeMap<Integer, LinkedList<Integer>> map) {
+		
+		if (root == null) 
+			return ;
+		
+		LinkedList<Integer> list = map.get(hd);
+		
+		if (list == null) {
+			list = new LinkedList<Integer>();
+			list.add(root.data);
+		}
+		else
+			list.add(root.data);
+		
+		map.put(hd, list);
+		
+		getVerticalOrder(root.left, hd - 1, map);
+		getVerticalOrder(root.right, hd + 1, map);
+	}
+	
+	public static void printVerticalOrder(Node root) {
+		TreeMap<Integer, LinkedList<Integer>> m = new TreeMap<Integer, LinkedList<Integer>>();
+		
+		//horizontal Distance = hd
+		int hd = 0;
+		
+		getVerticalOrder(root, hd, m);
+		
+		for (Map.Entry<Integer, LinkedList<Integer>> e : m.entrySet() ) {
+			LinkedList<Integer> list = e.getValue();
+			System.out.println(list.getFirst());
+		}
+	}
+
+	public static void printBottomView(Node root) {
+		TreeMap<Integer, LinkedList<Integer>> map = new TreeMap<Integer, LinkedList<Integer>>();
+		
+		getVerticalOrder(root, 0, map);
+		
+		for (Map.Entry<Integer, LinkedList<Integer>> entry : map.entrySet()) {
+			System.out.print(entry.getValue().getLast() + " ");
+		}
+	}
+	
+	public static void printTopView(Node root) {
+		TreeMap<Integer, LinkedList<Integer>> map = new TreeMap<Integer, LinkedList<Integer>>();
+		
+		getVerticalOrder(root, 0, map);
+		
+		for (Map.Entry<Integer, LinkedList<Integer>> entry : map.entrySet()) {
+			System.out.print(entry.getValue().getFirst() + " ");
+		}
+	}
+	
+	public static void spiralUsingTwoStack(Node root) {
+		if (root == null)
+			return ;
+		
 	}
 	
 }

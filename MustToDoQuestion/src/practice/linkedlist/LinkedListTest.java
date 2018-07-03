@@ -1,4 +1,6 @@
-package datastructure.linkedlist;
+package practice.linkedlist;
+
+import datastructure.linkedlist.LinkedList;
 
 public class LinkedListTest {
 
