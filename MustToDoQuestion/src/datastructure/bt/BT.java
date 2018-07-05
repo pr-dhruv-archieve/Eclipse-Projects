@@ -643,6 +643,32 @@ public class BT {
 		if (root == null)
 			return ;
 		
+		Stack<Node> s1 = new Stack<Node>();
+		Stack<Node> s2 = new Stack<Node>();
+		
+		s1.add(root);
+		
+		while (!s1.empty() || !s2.empty()) {
+			
+			while (!s1.empty()) {
+				root = s1.pop();
+				System.out.print(root.data + " ");
+				if (root.right != null)
+					s2.push(root.right);
+				if (root.left != null)
+					s2.push(root.left);
+			}
+			
+			while (!s2.empty()) {
+				root = s2.pop();
+				System.out.print(root.data + " ");
+				if (root.left != null)
+					s1.push(root.left);
+				if (root.right != null)
+					s1.push(root.right);
+			}
+		}
+		
 	}
 	
 }

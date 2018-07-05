@@ -99,9 +99,13 @@ public class BinaryTree {
 		
 		System.out.println("Vertical Order : ");
 		BT.printVerticalOrder(root1);
-		*/
-		System.out.println("Top View : ");
-		BT.printBottomView(root);
 		
+		System.out.println("Top View : ");
+		BT.printTopView(root);
+		
+		System.out.println("Bottom View : ");
+		BT.printBottomView(root);
+		*/
+		BT.spiralUsingTwoStack(root);
 	}
 }
