@@ -13,15 +13,19 @@ public class LinkedList {
 	}
 	
 	public LinkedList(int size) {
-		head = tail = new Node();
 		this.size = size;
 		
 		Random r = new Random();
-		for (int i = 1; i <= size; i++) {
-			int number = r.nextInt()%100;
+		int number = r.nextInt()%100;
+		if(number < 0)
+			number = number * -1;
+		this.head = this.tail = new Node(number);
+		
+		for (int i = 2; i <= size; i++) {
+			number = r.nextInt()%100;
 			if(number < 0)
 				number = number * -1;
-			Node temp = new Node(number + 1);
+			Node temp = new Node(number);
 			tail.next = temp;
 			tail = tail.next;
 		}
@@ -42,14 +46,14 @@ public class LinkedList {
 	
 	public void insertAtHead(int data) {
 		Node temp = new Node(data);
-		Node cur = this.head.next;
+		Node cur = this.head;
 		this.head.next = temp;
 		temp.next = cur;
 		this.size++;
 	}
 	
 	public void insertAtHead(Node node) {
-		Node cur = this.head.next;
+		Node cur = this.head;
 		this.head.next = node;
 		node.next = cur;
 		this.size++;
@@ -57,17 +61,16 @@ public class LinkedList {
 	
 	public String toString() {
 		String data = "";
-		Node cur = this.head.next;
+		Node cur = this.head;
 		data += cur.data;
 		for (cur = cur.next; cur != null; cur = cur.next)
 			data += ("-> " + cur.data);
-		data += "-> X";
 		return data;
 	}
 	
 	public int getMiddle() {
-		Node slow = this.head.next;
-		Node fast = this.head.next;
+		Node slow = this.head;
+		Node fast = this.head;
 		while(true) {
 			if(fast.next == null)
 				return slow.data;
@@ -95,8 +98,13 @@ public class LinkedList {
 		return rll;
 	}
 	
-	public void rotateToRight(int pos) {
-		
+	public Node reverseInPair() {
+		if (this.head == null || this.head.next == null)
+			return head;
+		else  {
+			return null;
+		}
+	
 	}
 	
 }

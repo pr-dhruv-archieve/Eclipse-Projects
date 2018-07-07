@@ -10,7 +10,7 @@ public class LinkedListTest {
 		System.out.println("List : " + ll);
 		
 		//	getMiddle()
-		//System.out.println("Middle : " + ll.getMiddle());
+		System.out.println("Middle : " + ll.getMiddle());
 		
 		//	Insert at Tail and Head
 		//ll.insert(30);

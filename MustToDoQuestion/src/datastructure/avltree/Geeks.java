@@ -62,7 +62,6 @@ public class Geeks {
  
     Node insert(Node node, int data) {
  
-        /* 1.  Perform the normal BST insertion */
         if (node == null)
             return (new Node(data));
  
@@ -70,40 +69,30 @@ public class Geeks {
             node.left = insert(node.left, data);
         else if (data > node.data)
             node.right = insert(node.right, data);
-        else // Duplicate datas not allowed
+        else 
             return node;
  
-        /* 2. Update height of this ancestor node */
         node.height = 1 + max(height(node.left),
                               height(node.right));
- 
-        /* 3. Get the balance factor of this ancestor
-              node to check whether this node became
-              unbalanced */
+
         int balance = getBalance(node);
  
-        // If this node becomes unbalanced, then there
-        // are 4 cases Left Left Case
         if (balance > 1 && data < node.left.data)
             return rightRotate(node);
  
-        // Right Right Case
         if (balance < -1 && data > node.right.data)
             return leftRotate(node);
  
-        // Left Right Case
         if (balance > 1 && data > node.left.data) {
             node.left = leftRotate(node.left);
             return rightRotate(node);
         }
  
-        // Right Left Case
         if (balance < -1 && data < node.right.data) {
             node.right = rightRotate(node.right);
             return leftRotate(node);
         }
  
-        /* return the (unchanged) node pointer */
         return node;
     }
  
@@ -122,12 +111,13 @@ public class Geeks {
         Geeks tree = new Geeks();
  
         /* Constructing tree given in the above figure */
-        tree.root = tree.insert(tree.root, 10);
-        tree.root = tree.insert(tree.root, 20);
-        tree.root = tree.insert(tree.root, 30);
-        tree.root = tree.insert(tree.root, 40);
-        tree.root = tree.insert(tree.root, 50);
-        tree.root = tree.insert(tree.root, 25);
+        //tree.root = tree.insert(tree.root, 10);
+        tree.root = tree.insert(tree.root, 2);AVLTree.printChildWise(tree.root);
+        tree.root = tree.insert(tree.root, 3);AVLTree.printChildWise(tree.root);
+        tree.root = tree.insert(tree.root, 4);AVLTree.printChildWise(tree.root);
+        tree.root = tree.insert(tree.root, 5);AVLTree.printChildWise(tree.root);
+        AVLTree.printChildWise(tree.root);
+        tree.root = tree.insert(tree.root, 6);
  
         /* The constructed AVL Tree would be
              30
@@ -136,6 +126,7 @@ public class Geeks {
          /  \     \
         10  25    50
         */
+        AVLTree.printChildWise(tree.root);
         System.out.println("Preorder traversal" +
                         " of constructed tree is : ");
         AVLTree.printChildWise(tree.root);

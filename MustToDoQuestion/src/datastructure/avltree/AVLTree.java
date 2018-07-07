@@ -94,7 +94,7 @@ public class AVLTree {
 			System.out.println("-");
 			return;
 		}
-		System.out.println(root.data + "->"+root.height);
+		System.out.println(root.data + "->"+root.height + "(" + getBalance(root) + ")");
 
 		aux(root.left, space + 4);
 		aux(root.right, space + 4);
