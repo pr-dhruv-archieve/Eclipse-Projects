@@ -2,14 +2,14 @@ package datastructure.heap;
 
 import java.util.Random;
 
-/*
+/* Heap is complete binary tree means every root has at most 2 child and filled form left to right.
  * If root is smaller than its both the child then it is called as MIN HEAP.
  * 
  *          10             10
  *         /  \          /    \  
  *       20   100      15      30  
- *       /           /   \    /   \
- *     30          40    50  100   40
+ *       /           /   \    /   
+ *     30          40    50  100   
  * 
  */
 
@@ -64,6 +64,9 @@ public class MinHeap implements Heap {
 	
 	public void insertKey(int data) {
 		
+		if (this.heapSize == MAX_CAPACITY)
+			throw new HeapOverFlowExcpetion();
+		
 		this.heapSize++;
 		
 		int index = this.heapSize - 1;
@@ -72,6 +75,21 @@ public class MinHeap implements Heap {
 		while (index != 0 && this.heap[getParent(index)] > this.heap[index]) {
 			swap(getParent(index), index);
 			index = getParent(index);
+		}
+	}
+	/*
+	 * If we replace the value at some index and we assumes that new value is smaller than the previous one 
+	 */
+	public void replace(int index, int newValue) {
+		if (this.heap[index] >= newValue)
+			return ;
+		else {
+			this.heap[index] = newValue;
+			
+			while (index != 0 && this.heap[getParent(index)] > this.heap[index]) {
+				swap(getParent(index), index);
+				index = getParent(index);
+			}
 		}
 	}
 }

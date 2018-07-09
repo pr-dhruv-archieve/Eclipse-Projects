@@ -6,6 +6,6 @@ public interface Heap {
 	void insertKey(int data);
 	int getParent(int index);
 	void generateHeap();
-	
+	void replace(int index, int newValue);
 	
 }
