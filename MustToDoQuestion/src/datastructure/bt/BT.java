@@ -554,6 +554,7 @@ public class BT {
 					return findParent(root.right, data);
 			}
 		}
+		return root;
 	}
 	
 	public static Node userTree(Node root, int nodes) {
