@@ -12,6 +12,10 @@ public class LinkedList {
 		size = 0;
 	}
 	
+	public static Node createLinkedList(int n) {
+		return new LinkedList(n).head;
+	}
+	
 	public LinkedList(int size) {
 		this.size = size;
 		

@@ -60,23 +60,22 @@ public class SubArrayWithGivenSum {
 		HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
 		
 		int cur = 0;
-		for (int i = 0; i < a.length; i++) {
+		int i = 0;
+		for (i = 0; i < a.length; i++) {
 			
 			cur += a[i];
 			
 			if (cur == sum) {
 				System.out.println("Index : 0 -> " + i);
-				return ;
 			}
 			
 			if (map.containsKey(cur - sum)) {
 				System.out.println("Index : "+ (map.get(cur - sum) + 1) + " -> " + i);
-				return ;
 			}
 			
 			map.put(cur, i);
 		}
-		System.out.println("No sub-array found.");
+		map.put(sum, i);
 		
 	}
 	
@@ -95,8 +94,8 @@ public class SubArrayWithGivenSum {
 			for (int i = 0; i < n; i++)
 				a[i] = sc.nextInt();
 			
-			method1(a, sum);
-			method2(a, sum);
+			//method1(a, sum);
+			//method2(a, sum);
 			method3(a, sum);
 		}
 		

@@ -541,6 +541,21 @@ public class BT {
 		return root;
 	}
 	
+	public static Node findParent(Node root, int data) {
+		if(root == null)
+			return root;
+		else {
+			if((root.left != null && root.left.data == data) || (root.right != null && root.right.data == data))
+				return root;
+			else {
+				if(root.left != null)
+					return findParent(root.left, data);
+				if(root.right != null)
+					return findParent(root.right, data);
+			}
+		}
+	}
+	
 	public static Node userTree(Node root, int nodes) {
 
 		Scanner sc = new Scanner(System.in);
@@ -669,6 +684,34 @@ public class BT {
 			}
 		}
 		
+	}
+	
+	public static String cusin(Node root, int node) {
+		
+		Node parent = findParent(root, node);
+		Node grandParent = findParent(root, parent.data);
+		System.out.println(parent.data + " -> " + grandParent.data +" \n");
+		
+		if(parent == null || grandParent == null)
+			return "No cusin";
+		else if(parent.left == null || parent.right == null || grandParent.left == null || grandParent.right == null)
+			return "No cusins";
+		else {
+			String cusins = "";
+			if(grandParent.left == parent) {
+				if(grandParent.right.left != null)
+					cusins += grandParent.right.left.data + " ";
+				if(grandParent.right.right != null)
+					cusins += grandParent.right.right.data + " ";
+			}
+			else{
+				if(grandParent.left.left != null)
+					cusins += grandParent.left.left.data + " ";
+				if(grandParent.left.right != null)
+					cusins += grandParent.left.right.data + " ";
+			}
+			return cusins;
+		}	
 	}
 	
 }

@@ -105,7 +105,11 @@ public class BinaryTree {
 		
 		System.out.println("Bottom View : ");
 		BT.printBottomView(root);
-		*/
+		
 		BT.spiralUsingTwoStack(root);
+		*/
+		
+		System.out.println(BT.cusin(root, sc.nextInt()));
+		
 	}
 }
