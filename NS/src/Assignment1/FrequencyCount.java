@@ -28,9 +28,8 @@ public class FrequencyCount {
 				System.out.println("\' \' -> " + map.get(temp));
 			else
 				System.out.println(temp + " -> " + map.get(temp));
-			count += map.get(temp);
 		}
-		return count;
+		return charData.length;
 	}
 	
 	public static void main(String[] args) throws FileNotFoundException {
