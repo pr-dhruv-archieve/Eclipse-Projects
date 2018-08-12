@@ -9,45 +9,56 @@ import java.util.TreeSet;
 
 public class FrequencyCount {
 
-	public static int letterCount(String s) {
-		char[] charData = s.toCharArray();
-		HashMap<Character, Integer> map = new HashMap<Character,Integer>();
-		int count = 0;
+	public static void letterCount(String s) {
+		HashMap<Integer, Integer> map = new HashMap<Integer,Integer>();
 		
-		for (Character temp : charData) {
-			if (map.containsKey(temp))
-				map.put(temp,(map.get(temp)+1));
+		try (BufferedReader br = new BufferedReader(new FileReader(s));){
+			int ch = br.read();
+			
+			while (ch >= 0 && ch <= 255) {
+				char d = (char)ch;
+				
+				if (ch == '\r' || ch == '\n') {
+					ch = (char)br.read();
+					continue;
+				}
+				
+				if (map.containsKey(ch))
+					map.put(ch, map.get(ch)+1);
+				else
+					map.put(ch, 1);
+				
+				ch = br.read();
+			}
+		}
+		catch(IOException e) {
+			System.out.println("File Not Found.");
+			return;
+		}
+		if (map.isEmpty()) {
+			System.out.println("empty file");
+			return ;
+		}
+		SortedSet<Integer> keys = new TreeSet<Integer>(map.keySet());
+		for (Integer ch : keys) {
+			int c = ch;
+			if (c == ' ')
+				System.out.println("\' \'\t" + map.get(ch));
 			else
-				map.put(temp, 1);
+				System.out.println((char)c + "\t" + map.get(ch));
 		}
 		
-		SortedSet<Character> keySet= new TreeSet<Character>(map.keySet());
-		System.out.println("Letter Count");
-		for (char temp : keySet) {
-			if (temp == ' ')
-				System.out.println("\' \' -> " + map.get(temp));
-			else
-				System.out.println(temp + " -> " + map.get(temp));
-		}
-		return charData.length;
 	}
 	
 	public static void main(String[] args) throws FileNotFoundException {
 		// TODO Auto-generated method stub
-		String data = "";
-		try (BufferedReader br = new BufferedReader(new FileReader("data.txt"));){
-			String str = br.readLine();
-			
-			while (str != null) {
-				data += str;
-				str = br.readLine();
-			}
-		}
-		catch(IOException e) {
-			System.out.println(e.getMessage());
-		}
 		
-		System.out.println("Total count : " + letterCount(data));
+		for (int i = 0; i < 3; i++) {
+			System.out.println("Test Case " + (i+1));
+			String file = "file"+i+".txt";
+			letterCount(file);
+			System.out.println("\n\n");
+		}
 		
 	}
 
